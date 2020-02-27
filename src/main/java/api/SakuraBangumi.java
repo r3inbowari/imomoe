@@ -27,6 +27,13 @@ public class SakuraBangumi {
         this.bangumiID = detailURL.substring(detailURL.lastIndexOf("/") + 1, detailURL.lastIndexOf("."));
     }
 
+    SakuraBangumi(String title, String detailURL) {
+        this.title = title;
+        this.detailURL = detailURL;
+
+        this.bangumiID = detailURL.substring(detailURL.lastIndexOf("/") + 1, detailURL.lastIndexOf("."));
+    }
+
     // SakuraBangumi <--- detail page
     private String rating; // 评分
     private String pullTime; // 上映
@@ -135,18 +142,30 @@ public class SakuraBangumi {
         Element rater = doc.getElementsByClass("rate r").first();
         this.rating = rater.getElementsByTag("em").first().text();
         this.update = rater.getElementsByClass("sinfo").first().getElementsByTag("p").last().text();
-        this.alias = rater.getElementsByClass("sinfo").first().getElementsByTag("p").first().text();
-        this.alias = alias.substring(3, alias.length());
+        if (rater.getElementsByClass("sinfo").first().getElementsByTag("p").size() > 1) {
+            this.alias = rater.getElementsByClass("sinfo").first().getElementsByTag("p").first().text();
+            this.alias = alias.substring(3, alias.length());
+        } else {
+            this.alias = "无";
+        }
+
+        if (cover == null) {
+            cover = doc.getElementsByClass("thumb l").first().getElementsByTag("img").attr("src");
+        }
+
+        if (detail == null) {
+            detail = doc.getElementsByClass("info").text();
+        }
         return this;
     }
 
     public String getPlaySource(int index) throws Exception {
-        if (index > count) {
-            throw new Exception("error playIndex");
+        if (index > count || count == 0) {
+            throw new Exception("error playIndex or not loadDetail");
         }
         Document doc = null;
         try {
-            doc = Jsoup.connect("http://www.yhdm.tv" + "/v/" + bangumiID + "-" + String.valueOf(index) + ".html").get();
+            doc = Jsoup.connect("http://www.yhdm.tv" + "/v/" + bangumiID + "-" + String.valueOf(index + 1) + ".html").get();
         } catch (IOException e) {
             throw new Exception("error playIndex connect");
         }

@@ -35,8 +35,13 @@ public class Sakura {
             throw new Exception("error search");
         }
         Elements el = doc.getElementsByClass("lpic").first().getElementsByTag("li");
-        String str = doc.getElementById("totalnum").text();
-        int it = Integer.parseInt(str.substring(0, str.length() - 1));
+        int it = el.size();
+        try {
+            String str = doc.getElementById("totalnum").text();
+            it = Integer.parseInt(str.substring(0, str.length() - 1));
+        } catch (NullPointerException e) {
+            // nothing
+        }
         ArrayList<SakuraBangumi> ret = new ArrayList<>();
         for (Element ele : el) {
             String detailURL = ele.getElementsByTag("a").attr("href");
@@ -48,5 +53,24 @@ public class Sakura {
         }
         this.lastSearch = ret;
         return it;
+    }
+
+    public ArrayList<SakuraBangumi> getDailyUpdate(int dayIndex) throws Exception {
+        Document doc = null;
+        try {
+            doc = Jsoup.connect(BaseURL).get();
+        } catch (IOException e) {
+            throw new Exception("error daily operation");
+        }
+
+        Elements allDay = doc.getElementsByClass("tlist").first().getElementsByTag("ul");
+        Elements oneDay = allDay.get(dayIndex).getElementsByTag("li");
+        ArrayList<SakuraBangumi> ret = new ArrayList<>();
+        for (Element ele : oneDay) {
+            String detailURL = ele.getElementsByTag("a").last().attr("href");
+            String title = ele.getElementsByTag("a").last().attr("title");
+            ret.add(new SakuraBangumi(title, detailURL));
+        }
+        return ret;
     }
 }

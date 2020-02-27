@@ -17,11 +17,21 @@ public class cmd {
 //        System.out.println(a.getBangumiDetails().get(0).getTitle());
 //
         Sakura a = new Sakura("http://www.yhdm.tv");
-        int k = a.search("柯南", 1);
+
+        // 关键字搜索
+        int k = a.search("你的名字", 1);
+
+        // 加载更多信息
         SakuraBangumi b = a.searchResult().get(0).loadDetail();
         System.out.println(b.getAlias());
-        String playSrc = b.getPlaySource(1027);
+
+        // 加载播放地址
+        String playSrc = b.getPlaySource(0);
         System.out.println(playSrc);
 
+        // 加载每日番剧
+        ArrayList<SakuraBangumi> da = a.getDailyUpdate(0); // 周一
+        da.get(0).loadDetail();
+        System.out.println(da.get(0).getPlaySource(0));
     }
 }
