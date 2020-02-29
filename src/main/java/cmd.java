@@ -1,10 +1,5 @@
 import api.Sakura;
 import api.SakuraBangumi;
-import common.Imomoe;
-import common.ImomoeBangumiSource;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 
@@ -22,7 +17,7 @@ public class cmd {
         int k = a.search("你的名字", 1);
 
         // 加载更多信息
-        SakuraBangumi b = a.searchResult().get(0).loadDetail();
+        SakuraBangumi b = a.searchResult().get(0).loadMoreDetail();
         System.out.println(b.getAlias());
 
         // 加载播放地址
@@ -31,7 +26,7 @@ public class cmd {
 
         // 加载每日番剧
         ArrayList<SakuraBangumi> da = a.getDailyUpdate(0); // 周一
-        da.get(0).loadDetail();
+        da.get(0).loadMoreDetail();
         System.out.println(da.get(0).getPlaySource(0));
     }
 }

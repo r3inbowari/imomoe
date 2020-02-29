@@ -130,7 +130,7 @@ public class SakuraBangumi {
         this.count = count;
     }
 
-    public SakuraBangumi loadDetail() throws Exception {
+    public SakuraBangumi loadMoreDetail() throws Exception {
         Document doc = null;
         try {
             doc = Jsoup.connect(Sakura.BaseURL + detailURL).get();
