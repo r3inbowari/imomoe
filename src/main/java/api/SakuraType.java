@@ -2,16 +2,16 @@ package api;
 
 public class SakuraType {
     public static final String BANGUMI_TYPE_AREA_JAPAN = "/japan";
-    public static final String BANGUMI_TYPE_CHINA = "/china";
-    public static final String BANGUMI_TYPE_AMERICAN = "/american";
-    public static final String BANGUMI_TYPE_ENGLAND = "/england";
-    public static final String BANGUMI_TYPE_KOREA = "/korea";
+    public static final String BANGUMI_TYPE_AREA_CHINA = "/china";
+    public static final String BANGUMI_TYPE_AREA_AMERICAN = "/american";
+    public static final String BANGUMI_TYPE_AREA_ENGLAND = "/england";
+    public static final String BANGUMI_TYPE_AREA_KOREA = "/korea";
 
-    public static final String BANGUMI_TYPE_AREA_LANG_JP = "/29";
-    public static final String BANGUMI_TYPE_AREA_LANG_CN = "/30";
-    public static final String BANGUMI_TYPE_AREA_LANG_GD = "/31";
-    public static final String BANGUMI_TYPE_AREA_LANG_EN = "/32";
-    public static final String BANGUMI_TYPE_AREA_LANG_KR = "/33";
+    public static final String BANGUMI_TYPE_LANG_JP = "/29";
+    public static final String BANGUMI_TYPE_LANG_CN = "/30";
+    public static final String BANGUMI_TYPE_LANG_GD = "/31";
+    public static final String BANGUMI_TYPE_LANG_EN = "/32";
+    public static final String BANGUMI_TYPE_LANG_KR = "/33";
 
     public static final String BANGUMI_TYPE_WARMBLOOD = "/66";
     public static final String BANGUMI_TYPE_COMBAT = "/64";
