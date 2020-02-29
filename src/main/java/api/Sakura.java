@@ -74,7 +74,7 @@ public class Sakura {
         return ret;
     }
 
-    public int getThemeList(String theme, int page) throws Exception {
+    public int getByTheme(String theme, int page) throws Exception {
         Document doc = null;
         try {
             if (page > 1) {

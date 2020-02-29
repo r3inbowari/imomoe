@@ -31,6 +31,6 @@ public class cmd {
         System.out.println(da.get(0).getPlaySource(0));
 
         // 加载类型主题
-        a.getThemeList(SakuraType.BANGUMI_TYPE_AREA_JAPAN, 1);
+        a.getByTheme(SakuraType.BANGUMI_TYPE_AREA_JAPAN, 1);
     }
 }
