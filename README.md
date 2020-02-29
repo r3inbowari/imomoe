@@ -10,7 +10,7 @@
 
 ## 使用方法
 
-| 函数  | 返回值  | 详细 |
+| 方法  | 返回值  | 详细 |
 | :------------ |:---------------:| :-----:|
 | `search(keyword, pageIndex)` | 结果总数 | 搜索一个关键字返回搜索结果总数以及搜索结果`SakuraBangumi[]` |
 | `getByTheme(themeType, pageIndex)` | 结果总数 | 搜索一个[主题](https://github.com/invenleey/imomoe/blob/master/src/main/java/api/SakuraType.java)返回搜索结果总数以及搜索结果`SakuraBangumi[]` |
