@@ -73,4 +73,36 @@ public class Sakura {
         }
         return ret;
     }
+
+    public int getThemeList(String theme, int page) throws Exception {
+        Document doc = null;
+        try {
+            if (page > 1) {
+                doc = Jsoup.connect(BaseURL + theme + "/" + String.valueOf(page) + ".html").get();
+            } else {
+                doc = Jsoup.connect(BaseURL + theme).get();
+            }
+        } catch (IOException e) {
+            throw new Exception("error search");
+        }
+        Elements el = doc.getElementsByClass("lpic").first().getElementsByTag("li");
+        int it = el.size();
+        try {
+            String str = doc.getElementById("totalnum").text();
+            it = Integer.parseInt(str.substring(0, str.length() - 1));
+        } catch (NullPointerException e) {
+            // nothing
+        }
+        ArrayList<SakuraBangumi> ret = new ArrayList<>();
+        for (Element ele : el) {
+            String detailURL = ele.getElementsByTag("a").attr("href");
+            String cover = ele.getElementsByTag("img").attr("src");
+            String title = ele.getElementsByTag("img").attr("alt");
+            String update = ele.getElementsByTag("span").first().text();
+            String detail = ele.getElementsByTag("p").last().text();
+            ret.add(new SakuraBangumi(title, cover, detail, detailURL, update));
+        }
+        this.lastSearch = ret;
+        return it;
+    }
 }

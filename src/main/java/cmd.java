@@ -1,5 +1,6 @@
 import api.Sakura;
 import api.SakuraBangumi;
+import api.SakuraType;
 
 import java.util.ArrayList;
 
@@ -28,5 +29,8 @@ public class cmd {
         ArrayList<SakuraBangumi> da = a.getDailyUpdate(0); // 周一
         da.get(0).loadMoreDetail();
         System.out.println(da.get(0).getPlaySource(0));
+
+        // 加载类型主题
+        a.getThemeList(SakuraType.BANGUMI_TYPE_AREA_JAPAN, 1);
     }
 }
