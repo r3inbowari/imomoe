@@ -20,4 +20,5 @@
 | SakuraBangumi.getPlaySource(0) | String | 对单条搜索结果进行视频地址获取 |
 
 ## 其他说明
+
 仅作测试, 请勿用于其他用途
